@@ -9,7 +9,7 @@ operators = ["+", "-", "*", "/", "=", "==", "<", ">", "=>", "=<", "and", "or", "
 # Lists of Seperators, Operators and Keywords
 separators = ["(", ")", ";", "{", "}", "[", "]"]
 #operators = ["<=", "=", "<", ">" ]
-keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer", "boolean", "real"], "put"
+keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer", "boolean", "real", "put"]
 
 # Takes text from input file and converts into a string with no spaces
 input = ""
