@@ -59,3 +59,7 @@ print("\n" + "Per Line View " + "\n" + "=============")
 for i in tokens:
      print(i)
 print("\n")
+
+
+with open ("output.txt", "w") as file:
+     file.write("Output:" + "\n" + "Token                 Lexeme" + "\n" + "---------             ----------" + "\n")
