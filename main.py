@@ -52,12 +52,92 @@ for i in tokens:
             tokens[index] = "=="
             del tokens[index + 1]
 
-print("\n" + "List View" + "\n" + "=========")
-print(tokens)
-print("\n" + "Per Line View " + "\n" + "=============")
+
+# FSM for Integer
+def isInteger(token):
+     accepting_states = [1]
+     state = 1
+     for i in token:
+          if state == 1:
+               if i.isdigit() == True:
+                    state = 1
+               else:
+                    state = 2
+
+          if state == 2:
+               state = 2
+
+     if state in accepting_states:
+          return True
+     else:
+          return False
+
+# FSM for Real
+def isReal(token):
+     accepting_states = [5]
+     state = 1
+     for i in token:
+          if state == 1:
+               if i.isdigit() == True:
+                    state = 2
+               elif i == ".":
+                    state = 3
+               else:
+                    state = 3
+
+          elif state == 2:
+               if i.isdigit() == True:
+                    state = 2
+               elif i == ".":
+                    state = 4
+               else:
+                    state = 3
+
+          elif state == 3:
+               if i.isdigit() == True:
+                    state = 3
+               elif i == ".":
+                    state = 3
+               else:
+                    state = 3
+
+          elif state == 4:
+               if i.isdigit() == True:
+                    state = 5
+               elif i == ".":
+                    state = 3
+               else:
+                    state = 3
+
+          elif state == 5:
+               if i.isdigit() == True:
+                    state = 5
+               elif i == ".":
+                    state = 3
+               else:
+                    state = 3
+     
+     if state in accepting_states:
+          return True
+     else:
+          return False
+
+
+
+# FSM for Identifer
+def isIdentifer(token):
+     return True
+
+
+
+
 for i in tokens:
-     print(i)
-print("\n")
+     if isReal(i) == True:
+          print("\n" + str(i) + " is a real"  + "\n")
+     if isInteger(i) == True:
+          print("\n" + str(i) + " is an Integer" + "\n")
+
+
 
 
 with open ("output.txt", "w") as file:

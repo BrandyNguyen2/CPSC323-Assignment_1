@@ -7,7 +7,7 @@ Identifier            fahr
 Operator              >=
 Identifier            upper
 Separator             )
-Identifier            a
+Integer               195
 Operator              =
-Real                  23.00
+Real                  5012.9
 Separator             ;

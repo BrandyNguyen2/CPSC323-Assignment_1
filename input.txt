@@ -1,1 +1,1 @@
-while (fahr >= upper ) a = 23.00; 
+while (fahr >= upper ) 195 = 5012.9; 
