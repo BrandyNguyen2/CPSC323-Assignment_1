@@ -3,7 +3,7 @@
 #keywords = ["integer", "if", "else", "fi", "while", "for", "put", "return"]
 #identifier = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "m", "n", "o", 
 #              "p", "q", "r", "s", "t", "u", "v", "w", "x", "y"]
-operators = ["+", "-", "*", "/", "=", "==", "<", ">", "=>", "=<", "and", "or", "not"]
+operators = ["+", "-", "*", "/", "=", "==", "<", ">", ">=", "<=", "and", "or", "not"]
 
 
 # Lists of Seperators, Operators and Keywords
@@ -52,7 +52,7 @@ for i in tokens:
             tokens[index] = ">="
             del tokens[index + 1]
 
-
+print("Temp tokens:", temp_token)
 print("\n" + "List View" + "\n" + "=========")
 print(tokens)
 print("\n" + "Per Line View " + "\n" + "=============")
@@ -63,3 +63,12 @@ print("\n")
 
 with open ("output.txt", "w") as file:
      file.write("Output:" + "\n" + "Token                 Lexeme" + "\n" + "---------             ----------" + "\n")
+     for i in tokens:
+          if i in operators:
+               file.write("Operator:             " + i + "\n") 
+          elif i in separators:
+               file.write("Separator:            " + i + "\n")
+          elif i in keywords:
+               file.write("Keyword:              " + i + "\n")
+          else:
+               file.write(i + "\n")

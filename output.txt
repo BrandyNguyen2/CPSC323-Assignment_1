@@ -1,3 +1,13 @@
 Output:
 Token                 Lexeme
 ---------             ----------
+Keyword:              while
+Separator:            (
+fahr
+Operator:             >=
+upper
+Separator:            )
+a
+Operator:             =
+23.00
+Separator:            ;
