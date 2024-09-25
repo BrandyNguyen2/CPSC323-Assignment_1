@@ -1,13 +1,8 @@
 # Programmers: Salvador Delgado, Brandy Nguyen, Landon Patam, & Nicholas Reeves
 
-#keywords = ["integer", "if", "else", "fi", "while", "for", "put", "return"]
-#identifier = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "m", "n", "o", 
-#              "p", "q", "r", "s", "t", "u", "v", "w", "x", "y"]
-operators = ["+", "-", "*", "/", "=", "==", "<", ">", ">=", "<=", "and", "or", "not"]
-
-
 # Lists of Seperators, Operators and Keywords
 separators = ["(", ")", ";", "{", "}", "[", "]"]
+operators = ["+", "-", "*", "/", "=", "==", "<", ">", ">=", "<=", "and", "or", "not"]
 #operators = ["<=", "=", "<", ">" ]
 keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer", "boolean", "real", "put"]
 
@@ -43,6 +38,7 @@ for i in input_nospaces:
 # Deals with edge cases of "<" and ">" followed by "="
 for i in tokens:
     index = tokens.index(i)
+
     if (i == "<"):
         if tokens[index + 1] == "=":
             tokens[index] = "<="
@@ -51,8 +47,11 @@ for i in tokens:
          if tokens[index + 1] == "=":
             tokens[index] = ">="
             del tokens[index + 1]
+    elif (i == "="):     
+         if tokens[index + 1] == "=":
+            tokens[index] = "=="
+            del tokens[index + 1]
 
-print("Temp tokens:", temp_token)
 print("\n" + "List View" + "\n" + "=========")
 print(tokens)
 print("\n" + "Per Line View " + "\n" + "=============")
@@ -63,12 +62,18 @@ print("\n")
 
 with open ("output.txt", "w") as file:
      file.write("Output:" + "\n" + "Token                 Lexeme" + "\n" + "---------             ----------" + "\n")
+     # Iterates through tokens list and write into output.txt file
      for i in tokens:
+          # Checks if token is a seperator, operator, keyword, real, integer, or identifier
           if i in operators:
-               file.write("Operator:             " + i + "\n") 
+               file.write("Operator              " + i + "\n") 
           elif i in separators:
-               file.write("Separator:            " + i + "\n")
+               file.write("Separator             " + i + "\n")
           elif i in keywords:
-               file.write("Keyword:              " + i + "\n")
+               file.write("Keyword               " + i + "\n")
+          elif "." in i:
+               file.write("Real                  " + i + "\n")
+          elif i.isdigit():
+               file.write("Integer               " + i + "\n")
           else:
-               file.write(i + "\n")
+               file.write("Identifier            " + i + "\n")
