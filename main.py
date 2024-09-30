@@ -12,7 +12,9 @@ input = ""
 with open("input.txt", "r" ) as file:
      input = file.read()
 
+
 input_nospaces = input.replace(" ", "")
+#print(input_nospaces)
 
 
 # List for Tokens
@@ -21,37 +23,61 @@ tokens = []
 # Loops through the input_nospaces and seperates 
 temp_token = ""
     
-for i in input_nospaces:
+for j in range(len(input_nospaces)):
+    i = input_nospaces[j]
     if temp_token in keywords:
             tokens.append(temp_token)
             temp_token = ""
     if (i in separators) or (i in operators):         
-        index = input.index(i)
+        #index = input.index(i)
         #print(" Found special character at index: " + str(index) + " its a " + i)
         if len(temp_token) != 0:
              tokens.append(temp_token)
              temp_token = ""
         tokens.append(i)
+    elif i == "\n":
+         tokens.append(temp_token)
+         temp_token = ""
     else:
         temp_token += i
 
-# Deals with edge cases of "<" and ">" followed by "="
-for i in tokens:
-    index = tokens.index(i)
 
-    if (i == "<"):
-        if tokens[index + 1] == "=":
+    if j == len(input_nospaces) - 1 and temp_token:
+          tokens.append(temp_token)
+          temp_token = ""
+
+print(tokens)
+
+
+
+# Deals with edge cases of "<" and ">" followed by "="
+index = 0
+while index < len(tokens):
+    i = tokens[index]
+
+    if i == "<":
+        if index + 1 < len(tokens) and tokens[index + 1] == "=":
             tokens[index] = "<="
             del tokens[index + 1]
-    elif (i == ">"):
-         if tokens[index + 1] == "=":
+
+    elif i == ">":
+        if index + 1 < len(tokens) and tokens[index + 1] == "=":
             tokens[index] = ">="
             del tokens[index + 1]
-    elif (i == "="):     
-         if tokens[index + 1] == "=":
+
+    elif i == "=":
+        if index + 1 < len(tokens) and tokens[index + 1] == "=":
             tokens[index] = "=="
             del tokens[index + 1]
 
+
+
+
+    index += 1
+
+
+#print("\n")
+#print(tokens)
 
 # FSM for Integer
 def isInteger(token):
@@ -126,16 +152,9 @@ def isReal(token):
 
 # FSM for Identifer
 def isIdentifer(token):
-     return True
+     return False
 
 
-
-
-for i in tokens:
-     if isReal(i) == True:
-          print("\n" + str(i) + " is a real"  + "\n")
-     if isInteger(i) == True:
-          print("\n" + str(i) + " is an Integer" + "\n")
 
 
 
@@ -151,9 +170,11 @@ with open ("output.txt", "w") as file:
                file.write("Separator             " + i + "\n")
           elif i in keywords:
                file.write("Keyword               " + i + "\n")
-          elif "." in i:
+          elif isReal(i):
                file.write("Real                  " + i + "\n")
-          elif i.isdigit():
+          elif isInteger(i):
                file.write("Integer               " + i + "\n")
-          else:
+          elif isIdentifer(i):
                file.write("Identifier            " + i + "\n")
+          else:
+               file.write("Unknwon               " + i + "\n")
