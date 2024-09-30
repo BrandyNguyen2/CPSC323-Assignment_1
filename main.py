@@ -131,7 +131,6 @@ def isIdentifier(token):
     
     state = 'START'
     for char in token:
-        print(char)
         if state == 'START':
             if char.isalpha() or char == '_':
                 state = 'VALID'
