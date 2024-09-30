@@ -47,7 +47,12 @@ for j in range(len(input_nospaces)):
           temp_token = ""
 
 print(tokens)
+for i in tokens:
+     if i == "" or i == " ":
+          j = tokens.index(i)
+          del tokens[j]
 
+print(tokens)
 
 
 # Deals with edge cases of "<" and ">" followed by "="
@@ -150,10 +155,33 @@ def isReal(token):
 
 
 
-# FSM for Identifer
-def isIdentifer(token):
-     return False
 
+# FSM for Identifer
+def isIdentifier(token):
+    if not token[0].isalpha() and not token[-1].isalpha():
+     return False
+    
+    acceptingStates = ['VALID']
+    state = 'START'
+    for char in token:
+        if state == 'START':
+            if char.isalpha() or char == '_':
+                state = 'VALID'
+            else:
+                state = 'INVALID'
+                break
+        elif state == 'VALID':
+            if char.isalnum() or char == '_':
+                state = 'VALID'
+            else:
+                state = 'INVALID'
+                break
+            
+    # checks if final state is in accepting state
+    if state in acceptingStates:
+         return True
+    else:
+         return False
 
 
 
@@ -174,7 +202,7 @@ with open ("output.txt", "w") as file:
                file.write("Real                  " + i + "\n")
           elif isInteger(i):
                file.write("Integer               " + i + "\n")
-          elif isIdentifer(i):
+          elif isIdentifier(i):
                file.write("Identifier            " + i + "\n")
           else:
                file.write("Unknwon               " + i + "\n")
