@@ -129,6 +129,7 @@ def isIdentifier(token):
     if not token[0].isalpha() and not token[-1].isalpha():
      return False
     
+    acceptingStates = ['VALID']
     state = 'START'
     for char in token:
         if state == 'START':
@@ -143,7 +144,12 @@ def isIdentifier(token):
             else:
                 state = 'INVALID'
                 break
-    return state == 'VALID'
+            
+    # checks if final state is in accepting state
+    if state in acceptingStates:
+         return True
+    else:
+         return False
 
 
 for i in tokens:
@@ -153,8 +159,6 @@ for i in tokens:
           print("\n" + str(i) + " is an Integer" + "\n")
      if isIdentifier(i) == True:
           print("\n" + str(i) + " is an Identifier" + "\n")
-     else:
-          print("\n" + str(i) + " is not an Identifier" + "\n")
 
 
 

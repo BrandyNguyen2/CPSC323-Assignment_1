@@ -3,9 +3,9 @@ Token                 Lexeme
 ---------             ----------
 Keyword               while
 Separator             (
-Identifier            1num
-Operator              >=
-Identifier            numbers
+Identifier            a1num
+Operator              ==
+Identifier            Numbers
 Separator             )
 Integer               195
 Operator              =
