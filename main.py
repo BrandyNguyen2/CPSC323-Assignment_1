@@ -125,9 +125,22 @@ def isReal(token):
 
 
 # FSM for Identifer
-def isIdentifer(token):
-     return True
-
+def isIdentifier(token):
+    state = 'START'
+    for char in token:
+        if state == 'START':
+            if char.isalpha() or char == '_':
+                state = 'VALID'
+            else:
+                state = 'INVALID'
+                break
+        elif state == 'VALID':
+            if char.isalnum() or char == '_':
+                state = 'VALID'
+            else:
+                state = 'INVALID'
+                break
+    return state == 'VALID'
 
 
 
@@ -136,6 +149,8 @@ for i in tokens:
           print("\n" + str(i) + " is a real"  + "\n")
      if isInteger(i) == True:
           print("\n" + str(i) + " is an Integer" + "\n")
+     if isIdentifier(i) == True:
+          print("\n" + str(i) + " is an Identifier" + "\n")
 
 
 
