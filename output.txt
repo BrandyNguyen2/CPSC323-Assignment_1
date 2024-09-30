@@ -3,9 +3,9 @@ Token                 Lexeme
 ---------             ----------
 Keyword               while
 Separator             (
-Identifier            fahr
+Identifier            123Number
 Operator              >=
-Identifier            upper
+Identifier            number4
 Separator             )
 Integer               195
 Operator              =

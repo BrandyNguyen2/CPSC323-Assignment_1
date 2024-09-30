@@ -129,7 +129,7 @@ def isIdentifier(token):
     state = 'START'
     for char in token:
         if state == 'START':
-            if char.isalpha() or char == '_':
+            if char.isalnum() or char == '_':
                 state = 'VALID'
             else:
                 state = 'INVALID'
@@ -151,7 +151,6 @@ for i in tokens:
           print("\n" + str(i) + " is an Integer" + "\n")
      if isIdentifier(i) == True:
           print("\n" + str(i) + " is an Identifier" + "\n")
-
 
 
 

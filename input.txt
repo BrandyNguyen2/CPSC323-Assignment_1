@@ -1,1 +1,1 @@
-while (fahr >= upper ) 195 = 5012.9; 
+while (123Number >= number4 ) 195 = 5012.9; 
