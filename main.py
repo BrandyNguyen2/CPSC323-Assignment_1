@@ -126,32 +126,40 @@ def isReal(token):
 
 # FSM for Identifer
 def isIdentifier(token):
-    if not token[0].isalpha() and not token[-1].isalpha():
-     return False
-    
-    acceptingStates = ['VALID']
-    state = 'START'
-    for char in token:
-        if state == 'START':
-            if char.isalpha() or char == '_':
-                state = 'VALID'
-            else:
-                state = 'INVALID'
-                break
-        elif state == 'VALID':
-            if char.isalnum() or char == '_':
-                state = 'VALID'
-            else:
-                state = 'INVALID'
-                break
-            
-    # checks if final state is in accepting state
-    if state in acceptingStates:
-         return True
-    else:
-         return False
+#     if not token[0].isalpha() and not token[-1].isalpha():
+#      return False
+     acceptingState = [2,3]
+     state = 1
+     for char in token: 
+          if state == 1:
+               if char.isalpha() or char == "_":
+                    state = 3
+               else:
+                    state = 4 # if a number, go to invalid state
+          elif state == 2:
+               if char.isalpha() or char == "_":
+                    state = 4
+               else:
+                    state = 2
+          elif state == 3:
+               if char.isalpha() or char == "_":
+                    state = 3
+               else:
+                    state = 4
+          elif state == 4: # invalid state
+               if char.isalpha() or char == "_":
+                    state = 2
+               else:
+                    state = 4
 
+     # checks if final state is in accepting state
+     if state in acceptingState:
+          return True
+     else:
+          return False
 
+# Test cases for identifier 
+#tokens = ["a01s", "0a1s", "a023", "101", "x12", "xyz", "123", "x12345"]          
 for i in tokens:
      if isReal(i) == True:
           print("\n" + str(i) + " is a real"  + "\n")
@@ -159,6 +167,8 @@ for i in tokens:
           print("\n" + str(i) + " is an Integer" + "\n")
      if isIdentifier(i) == True:
           print("\n" + str(i) + " is an Identifier" + "\n")
+     # else:
+     #      print("\n" + str(i) + " is not an Identifier" + "\n")
 
 
 

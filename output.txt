@@ -3,7 +3,7 @@ Token                 Lexeme
 ---------             ----------
 Keyword               while
 Separator             (
-Identifier            a1num
+Identifier            1num2
 Operator              ==
 Identifier            Numbers
 Separator             )
