@@ -1,26 +1,20 @@
 # Programmers: Salvador Delgado, Brandy Nguyen, Landon Patam, & Nicholas Reeves
 
-# Lists of Seperators, Operators and Keywords
+# Lists of Seperators, Operators and Keywords for later reference
 separators = ["(", ")", ";", "{", "}", "[", "]"]
 operators = ["+", "-", "*", "/", "=", "==", "<", ">", ">=", "<=", "and", "or", "not"]
-#operators = ["<=", "=", "<", ">" ]
 keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer", "boolean", "real", "put"]
 
 # Takes text from input file and converts into a string with no spaces
-input = ""
-
 with open("input.txt", "r" ) as file:
      input = file.read()
-
-
 input_nospaces = input.replace(" ", "")
 #print(input_nospaces)
 
-
-# List for Tokens
+# Instantiating list for Tokens
 tokens = []
 
-# Loops through the input_nospaces and seperates 
+# Loops through the input_nospaces and seperates each token and places them into a list
 temp_token = ""
     
 for j in range(len(input_nospaces)):
@@ -46,12 +40,14 @@ for j in range(len(input_nospaces)):
           tokens.append(temp_token)
           temp_token = ""
 
-print(tokens)
+
+
+# Iterates through tokens list and removes any instances of blank tokens
+#print(tokens)
 for i in tokens:
      if i == "" or i == " ":
           j = tokens.index(i)
           del tokens[j]
-
 print(tokens)
 
 
@@ -75,14 +71,8 @@ while index < len(tokens):
             tokens[index] = "=="
             del tokens[index + 1]
 
-
-
-
     index += 1
 
-
-#print("\n")
-#print(tokens)
 
 # FSM for Integer
 def isInteger(token):
@@ -153,29 +143,43 @@ def isReal(token):
      else:
           return False
 
-
-
-
 # FSM for Identifer
 def isIdentifier(token):
-    if not token[0].isalpha() and not token[-1].isalpha():
-     return False
-    
-    acceptingStates = ['VALID']
-    state = 'START'
+    accepting_states = [2]
+    state = 1
+    index = 0
+
     for char in token:
-        if state == 'START':
-            if char.isalpha() or char == '_':
-                state = 'VALID'
+        if state == 1:
+            if (char.isalpha() and (index == 0 or index == len(token)-1)):
+                 state = 2
+            elif (char.isalnum()):
+                 state = 1
             else:
-                state = 'INVALID'
-                break
-        elif state == 'VALID':
-            if char.isalnum() or char == '_':
-                state = 'VALID'
+                 state = 3
+
+        elif state == 2:
+            if (char.isalpha() and (index == 0 or index == len(token)-1)):
+                 state = 2
+            elif (char.isalnum()):
+                 state = 1
             else:
-                state = 'INVALID'
-                break
+                 state = 3
+
+        elif state == 3:
+             if (char.isalpha() and (index == 0 or index == len(token)-1)):
+                 state = 3
+             elif (char.isalnum()):
+                 state = 3
+             else:
+                 state = 3
+
+        index += 1
+    if state in accepting_states:
+          return True
+    else:
+          return False
+             
             
     # checks if final state is in accepting state
     if state in acceptingStates:
@@ -183,26 +187,26 @@ def isIdentifier(token):
     else:
          return False
 
-
-
-
+def lexer(token):
+     if i in operators:
+          return 'Operator' 
+     elif i in separators:
+          return 'Separator'
+     elif i in keywords:
+          return 'Keyword'
+     elif isReal(i):
+          return 'Real'
+     elif isInteger(i):
+          return 'Integer'
+     elif isIdentifier(i):
+          return 'Identifier'
+     else:
+          return 'Unknown'
 
 with open ("output.txt", "w") as file:
-     file.write("Output:" + "\n" + "Token                 Lexeme" + "\n" + "---------             ----------" + "\n")
+     file.write(f'Output:\nToken{" "*17}Lexeme\n{"-"*9}{" "*13}{"-"*8}\n')
      # Iterates through tokens list and write into output.txt file
      for i in tokens:
           # Checks if token is a seperator, operator, keyword, real, integer, or identifier
-          if i in operators:
-               file.write("Operator              " + i + "\n") 
-          elif i in separators:
-               file.write("Separator             " + i + "\n")
-          elif i in keywords:
-               file.write("Keyword               " + i + "\n")
-          elif isReal(i):
-               file.write("Real                  " + i + "\n")
-          elif isInteger(i):
-               file.write("Integer               " + i + "\n")
-          elif isIdentifier(i):
-               file.write("Identifier            " + i + "\n")
-          else:
-               file.write("Unknwon               " + i + "\n")
+          token_type = lexer(i)
+          file.write(f'{token_type:<22}{i}\n')

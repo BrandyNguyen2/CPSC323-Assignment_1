@@ -1,6 +1,6 @@
 Output:
 Token                 Lexeme
----------             ----------
+---------             --------
 Keyword               while
 Separator             (
 Identifier            f123ahr
