@@ -1,1 +1,8 @@
-while (fahr <= upper) a = 23.00; [* this is a sample *]
+
+for (y = 1; y <= 5) { put y; }
+while (z != 0) { String message; }
+if (flag == false) { Boolean isSet = true; }
+Integer var1 = 20; if (var1 < 100) { put var1; }
+real pi; Boolean check; if  3 * (y + 2.5) < real = [3]
+{ put pi; } String x123; if (x123 == "Hello") { put x123; } 
+[* this is the 2nd test case *]

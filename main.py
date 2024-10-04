@@ -68,18 +68,25 @@ while index < len(tokens):
 
 # Removes comments from the tokens list
 
-first_index = 0
-last_index = 0
+print(tokens)
+
+first_index = None
+last_index = None
 for i in range(len(tokens)):
      if tokens[i] == "[" and tokens[i+1] == "*":
-          first_index = tokens.index(tokens[i])
-     if tokens[i] == "*" and tokens[i+1] == "]":
+          print ("Found comment" + tokens[i] + tokens[i+1] )
+          first_index = i
+     elif tokens[i] == "*" and tokens[i+1] == "]":
           last_index = i + 1
+if first_index != None and last_index != None:
+     del tokens[first_index: last_index+1]
 
 #print("found comment at index " + str(first_index) + " its a " + tokens[first_index])
 #print("found end comment at index " + str(last_index) + " its a " + tokens[last_index])
-del tokens[first_index: last_index+1]
+#if first_index != None and last_index != None:
+#     del tokens[first_index: last_index+1]
 
+#print(tokens)
 
 #print("comment starts at index " + str(first_index) + " its a " + tokens[i])
 
