@@ -73,7 +73,7 @@ while index < len(tokens):
 
 # Removes comments from the tokens list
 
-print(tokens)
+#print(tokens)
 
 first_index = None
 last_index = None
