@@ -1,0 +1,7 @@
+while (w > 5.6) { Integer counter; }
+for (j = 5; j <= 10) { real value; }
+if (flag == false) { put "Not Set"; }
+Integer num2 = 15; if (num2 != 10) { put num2; }
+real 2x2; Integer checkNum; 2 + 4 * (w + 2.1) >= Integer[2];
+String strX = "World"; if (strX != "") { put strX; }
+else { Integer numFlag; } [* this is the 3rd test case *]
