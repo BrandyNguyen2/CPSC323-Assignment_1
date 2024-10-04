@@ -1,39 +1,31 @@
 # Programmers: Salvador Delgado, Brandy Nguyen, Landon Patam, & Nicholas Reeves
 
-# Lists of Seperators, Operators and Keywords
+# Lists of Seperators, Operators and Keywords for later reference
 separators = ["(", ")", ";", "{", "}", "[", "]"]
 operators = ["+", "-", "*", "/", "=", "==", "<", ">", ">=", "<=", "and", "or", "not"]
-#operators = ["<=", "=", "<", ">" ]
-keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer", "boolean", "real", "put"]
+keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer", "boolean", "real", "put",]
 
 # Takes text from input file and converts into a string with no spaces
-input = ""
-
 with open("input.txt", "r" ) as file:
      input = file.read()
-
-
 input_nospaces = input.replace(" ", "")
 #print(input_nospaces)
 
-
-# List for Tokens
+# Instantiating list for Tokens
 tokens = []
 
-# Loops through the input_nospaces and seperates 
+# Loops through the input_nospaces and seperates each token and places them into a list
 temp_token = ""
     
 for j in range(len(input_nospaces)):
     i = input_nospaces[j]
-    if temp_token in keywords:
+    if temp_token in keywords or temp_token in operators:
             tokens.append(temp_token)
             temp_token = ""
     if (i in separators) or (i in operators):         
-        #index = input.index(i)
-        #print(" Found special character at index: " + str(index) + " its a " + i)
         if len(temp_token) != 0:
-             tokens.append(temp_token)
-             temp_token = ""
+          tokens.append(temp_token)
+          temp_token = ""
         tokens.append(i)
     elif i == "\n":
          tokens.append(temp_token)
@@ -46,13 +38,14 @@ for j in range(len(input_nospaces)):
           tokens.append(temp_token)
           temp_token = ""
 
-print(tokens)
+
+
+# Iterates through tokens list and removes any instances of blank tokens
+#print(tokens)
 for i in tokens:
      if i == "" or i == " ":
           j = tokens.index(i)
           del tokens[j]
-
-print(tokens)
 
 
 # Deals with edge cases of "<" and ">" followed by "="
@@ -75,134 +68,120 @@ while index < len(tokens):
             tokens[index] = "=="
             del tokens[index + 1]
 
-
-
-
     index += 1
 
 
-#print("\n")
-#print(tokens)
-
 # FSM for Integer
 def isInteger(token):
-     accepting_states = [1]
-     state = 1
-     for i in token:
-          if state == 1:
-               if i.isdigit() == True:
-                    state = 1
-               else:
-                    state = 2
+     real_dictionary = {
+     1 : [1, 2],
+     2 : [2, 2]
+     }
 
-          if state == 2:
+     state = 1
+     accepting_states = [1]
+
+     for i in token:
+          if i.isdigit():
+               state = real_dictionary[state][0]
+          else:
                state = 2
 
+
+         
+                         
+                         
+               # checks if final state is in accepting state
      if state in accepting_states:
           return True
      else:
           return False
+     
 
 # FSM for Real
 def isReal(token):
-     accepting_states = [5]
+     real_dictionary = {
+     1 : [2, 3],
+     2 : [2, 4],
+     3 : [3, 3],
+     4 : [5, 3],
+     5 : [5, 3],
+
+     }
+
      state = 1
+     accepting_states = [5]
+
      for i in token:
-          if state == 1:
-               if i.isdigit() == True:
-                    state = 2
-               elif i == ".":
-                    state = 3
-               else:
-                    state = 3
+          if i.isdigit():
+               state = real_dictionary[state][0]
+          elif i == ".":
+               state = real_dictionary[state][1]
+          else:
+               state = 3
 
-          elif state == 2:
-               if i.isdigit() == True:
-                    state = 2
-               elif i == ".":
-                    state = 4
-               else:
-                    state = 3
 
-          elif state == 3:
-               if i.isdigit() == True:
-                    state = 3
-               elif i == ".":
-                    state = 3
-               else:
-                    state = 3
-
-          elif state == 4:
-               if i.isdigit() == True:
-                    state = 5
-               elif i == ".":
-                    state = 3
-               else:
-                    state = 3
-
-          elif state == 5:
-               if i.isdigit() == True:
-                    state = 5
-               elif i == ".":
-                    state = 3
-               else:
-                    state = 3
-     
+         
+                         
+                         
+               # checks if final state is in accepting state
      if state in accepting_states:
           return True
      else:
           return False
-
-
 
 
 # FSM for Identifer
 def isIdentifier(token):
-    if not token[0].isalpha() and not token[-1].isalpha():
-     return False
-    
-    acceptingStates = ['VALID']
-    state = 'START'
-    for char in token:
-        if state == 'START':
-            if char.isalpha() or char == '_':
-                state = 'VALID'
-            else:
-                state = 'INVALID'
-                break
-        elif state == 'VALID':
-            if char.isalnum() or char == '_':
-                state = 'VALID'
-            else:
-                state = 'INVALID'
-                break
-            
-    # checks if final state is in accepting state
-    if state in acceptingStates:
-         return True
-    else:
-         return False
+     real_dictionary = {
+     1 : [2, 3],
+     2 : [4, 5],
+     3 : [3, 3],
+     4 : [4, 5],
+     5 : [6, 5],
+     6 : [7, 5],
+     7 : [6, 5]
 
+     }
 
+     state = 1
+     accepting_states = [2,4,6,7]
 
+     for i in token:
+          if i.isalpha():
+               state = real_dictionary[state][0]
+          elif i.isdigit():
+               state = real_dictionary[state][1]
+          else:
+               state = 3
+                    
+                    
+          # checks if final state is in accepting state
+     if state in accepting_states:
+          return True
+     else:
+          return False
 
+def lexer(token):
+     if i in operators:
+          return 'Operator' 
+     elif i in separators:
+          return 'Separator'
+     elif i in keywords:
+          return 'Keyword'
+     elif isReal(i):
+          return 'Real'
+     elif isInteger(i):
+          return 'Integer'
+     elif isIdentifier(i):
+          return 'Identifier'
+     else:
+          return 'Unknown'
 
 with open ("output.txt", "w") as file:
-     file.write("Output:" + "\n" + "Token                 Lexeme" + "\n" + "---------             ----------" + "\n")
+     file.write(f'Output:\nToken{" "*17}Lexeme\n{"-"*9}{" "*13}{"-"*8}\n')
      # Iterates through tokens list and write into output.txt file
      for i in tokens:
           # Checks if token is a seperator, operator, keyword, real, integer, or identifier
-          if i in operators:
-               file.write("Operator              " + i + "\n") 
-          elif i in separators:
-               file.write("Separator             " + i + "\n")
-          elif i in keywords:
-               file.write("Keyword               " + i + "\n")
-          elif isReal(i):
-               file.write("Real                  " + i + "\n")
-          elif isInteger(i):
-               file.write("Integer               " + i + "\n")
-          elif isIdentifier(i):
-               file.write("Identifier            " + i + "\n")
-          else:
-               file.write("Unknwon               " + i + "\n")
+          token_type = lexer(i)
+          file.write(f'{token_type:<22}{i}\n')
