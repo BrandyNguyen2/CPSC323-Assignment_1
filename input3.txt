@@ -19,5 +19,5 @@ Integer x = 100; while (x > 90) { x--; put x; }
 Boolean success = true; if (success) { put success; }
 real gravity = 9.81; if (gravity > 9) { put gravity; }
 String result = "Pass"; if (result == "Pass") { put result; }
-Integer lastScore = 99; if (lastScore >= 95) { put lastScore; }
+Integer finalScore = 99; if (finalScore >= 95) { put finalScore; }
 [* this is the 3rd test case *]

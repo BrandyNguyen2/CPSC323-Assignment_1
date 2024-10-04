@@ -17,7 +17,7 @@ temp_token = ""
     
 for j in range(len(input)):
     i = input[j]
-    if temp_token in keywords or temp_token in operators:
+    if temp_token in operators:
             tokens.append(temp_token)
             temp_token = ""
     if (i in separators) or (i in operators):         
