@@ -1,9 +1,1 @@
-for (x > 0.5) { put x; }
-for (i = 0; i < 10) { Integer x; }
-while (x >= 3.14) { Boolean flag; }
-Integer alpha9999alpha = 10; if (alpha > 5) { put alpha; }
-3 + 5 * (x - 2.0) >= Integer[5];
-if (x < 10) { put (x + 1); } else { Integer y; }
-real 123abc; Integer 0.5; put true;
-if (flag == true) { put flag; }
-Integer a1b2; if (a1b2 > 3.0) { a1b2 = 4; }
+while (fahr <= upper) a = 23.00; [* this is a sample *]

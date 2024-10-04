@@ -8,8 +8,6 @@ keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer",
 # Takes text from input file and converts into a string with no spaces
 with open("input.txt", "r" ) as file:
      input = file.read()
-input_nospaces = input.replace(" ", "")
-#print(input_nospaces)
 
 # Instantiating list for Tokens
 tokens = []
@@ -37,9 +35,6 @@ for j in range(len(input)):
         temp_token += i
 
 
-    if j == len(input_nospaces) - 1 and temp_token:
-          tokens.append(temp_token)
-          temp_token = ""
 
 
 
@@ -69,9 +64,29 @@ while index < len(tokens):
     index += 1
 
 
+
+
+# Removes comments from the tokens list
+
+first_index = 0
+last_index = 0
+for i in range(len(tokens)):
+     if tokens[i] == "[" and tokens[i+1] == "*":
+          first_index = tokens.index(tokens[i])
+     if tokens[i] == "*" and tokens[i+1] == "]":
+          last_index = i + 1
+
+#print("found comment at index " + str(first_index) + " its a " + tokens[first_index])
+#print("found end comment at index " + str(last_index) + " its a " + tokens[last_index])
+del tokens[first_index: last_index+1]
+
+
+#print("comment starts at index " + str(first_index) + " its a " + tokens[i])
+
+
 # FSM for Integer
 def isInteger(token):
-     real_dictionary = {
+     Integer_dictionary = {
      1 : [1, 2],
      2 : [2, 2]
      }
@@ -81,7 +96,7 @@ def isInteger(token):
 
      for i in token:
           if i.isdigit():
-               state = real_dictionary[state][0]
+               state = Integer_dictionary[state][0]
           else:
                state = 2
 
@@ -132,7 +147,7 @@ def isReal(token):
 
 # FSM for Identifer
 def isIdentifier(token):
-     real_dictionary = {
+     Identifier_dictionary = {
      1 : [2, 3],
      2 : [4, 5],
      3 : [3, 3],
@@ -148,9 +163,9 @@ def isIdentifier(token):
 
      for i in token:
           if i.isalpha():
-               state = real_dictionary[state][0]
+               state = Identifier_dictionary[state][0]
           elif i.isdigit():
-               state = real_dictionary[state][1]
+               state = Identifier_dictionary[state][1]
           else:
                state = 3
                     
