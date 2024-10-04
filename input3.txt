@@ -1,7 +1,23 @@
-while (w > 5.6) { Integer counter; }
-for (j = 5; j <= 10) { real value; }
-if (flag == false) { put "Not Set"; }
-Integer num2 = 15; if (num2 != 10) { put num2; }
-real 2x2; Integer checkNum; 2 + 4 * (w + 2.1) >= Integer[2];
-String strX = "World"; if (strX != "") { put strX; }
-else { Integer numFlag; } [* this is the 3rd test case *]
+for (Integer i = 0; i < 5; i++) { put i; }
+if (y < 20) { Boolean isActive = false; put isActive; }
+real number = 2.71; if (number > 2.0) { put number; }
+while (y >= 10) { y = y - 1; put y; }
+String str = "Sample"; if (str != "") { put str; }
+Integer a1b2; if (a1b2 > 3.0) { a1b2 = 4; }
+Boolean flag = false; if (flag == false) { put flag; }
+Integer z = 50; for (Integer j = 0; j < 3; j++) { put j; }
+real pi = 3.1415; if (pi < 3.2) { put pi; }
+String greeting = "Hello"; if (greeting == "Hello") { put greeting; }
+Integer counter = 0; while (counter < 5) { counter++; put counter; }
+Boolean check = true; if (check == true) { put check; }
+if (z == 50) { z = z + 1; put z; }
+real euler = 2.718; if (euler < 3) { put euler; }
+String name = "Code"; if (name == "Code") { put name; }
+while (a1b2 > 2) { a1b2--; put a1b2; }
+if (counter == 5) { put "Done"; }
+Integer x = 100; while (x > 90) { x--; put x; }
+Boolean success = true; if (success) { put success; }
+real gravity = 9.81; if (gravity > 9) { put gravity; }
+String result = "Pass"; if (result == "Pass") { put result; }
+Integer lastScore = 99; if (lastScore >= 95) { put lastScore; }
+[* this is the 3rd test case *]

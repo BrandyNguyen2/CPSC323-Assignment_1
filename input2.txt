@@ -1,7 +1,12 @@
-for (y = 1; y <= 5) { put y; }
-while (z != 0) { String message; }
-if (flag == false) { Boolean isSet = true; }
-Integer var1 = 20; if (var1 < 100) { put var1; }
-real pi; Boolean check; if (3 * (y + 2.5) < real[3]) 
-{ put pi; } String x123; if (x123 == "Hello") { put x123; } 
+for (Integer i = 0; i < 5; i++) { put i; }
+if (x > 5) { Boolean flag = true; if (flag == true) { put flag; } }
+while (x >= 0) { put x; x = x - 1; }
+String greeting = "Hello"; if (greeting != "") { put greeting; } 
+else { Integer errorCode = -1; put errorCode; }
+real pi = 3.14159; if (2 + 3 * (x - 1.5) <= real[4]) { put pi; }
+for (Integer j = 1; j <= 10; j++) { real temp; }
+String strTest = "Test"; if (strTest == "Test") { put strTest; }
+Integer k = 0; while (k < 3) { k++; put k; }
+Integer alpha9999alpha = 10; if (alpha > 5) { put alpha; }
+real 123abc; Integer 0.5; put true;
 [* this is the 2nd test case *]

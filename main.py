@@ -35,9 +35,6 @@ for j in range(len(input)):
         temp_token += i
 
 
-
-
-
 # Removes spaces and empty tokens from list
 tokens = [i for i in tokens if i != "" and i != " "]
 
@@ -67,8 +64,6 @@ while index < len(tokens):
               del tokens[index + 1]
 
     index += 1
-
-
 
 
 # Removes comments from the tokens list
@@ -110,11 +105,7 @@ def isInteger(token):
           if i.isdigit():
                state = Integer_dictionary[state][0]
           else:
-               state = 2
-
-
-         
-                         
+               state = 2   
                          
                # checks if final state is in accepting state
      if state in accepting_states:
@@ -145,10 +136,7 @@ def isReal(token):
                state = real_dictionary[state][1]
           else:
                state = 3
-
-
-         
-                         
+                     
                          
                # checks if final state is in accepting state
      if state in accepting_states:

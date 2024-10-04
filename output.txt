@@ -19,8 +19,7 @@ Separator             }
 Keyword               while
 Separator             (
 Identifier            z
-Unknown               !
-Operator              =
+Operator              !=
 Integer               0
 Separator             )
 Separator             {
