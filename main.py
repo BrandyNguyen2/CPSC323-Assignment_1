@@ -2,7 +2,7 @@
 
 # Lists of Seperators, Operators and Keywords for later reference
 separators = ["(", ")", ";", "{", "}", "[", "]", ","]
-operators = ["+", "-", "*", "/", "=", "==", "<", ">", ">=", "<=", "and", "or", "not"]
+operators = ["+", "-", "*", "/", "=", "==", "!=", "<", ">", ">=", "<=", "and", "or", "not"]
 keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer", "boolean", "real", "put", "function", "return", "get", "true", "false", "else", "elif", "main"]
 
 # Takes text from input file and converts into a string with no spaces
@@ -60,6 +60,11 @@ while index < len(tokens):
         if index + 1 < len(tokens) and tokens[index + 1] == "=":
             tokens[index] = "=="
             del tokens[index + 1]
+     
+    elif i == "!":
+         if index + 1 < len(tokens) and tokens[index + 1] == "=":
+              tokens[index] = "!="
+              del tokens[index + 1]
 
     index += 1
 
