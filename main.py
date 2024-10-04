@@ -3,7 +3,7 @@
 # Lists of Seperators, Operators and Keywords for later reference
 separators = ["(", ")", ";", "{", "}", "[", "]", ","]
 operators = ["+", "-", "*", "/", "=", "==", "<", ">", ">=", "<=", "and", "or", "not"]
-keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer", "boolean", "real", "put", "true", "True", "false", "False", "function", "return", "get", "else", "elif"]
+keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer", "boolean", "real", "put", "function"]
 
 # Takes text from input file and converts into a string with no spaces
 with open("input.txt", "r" ) as file:
@@ -17,8 +17,8 @@ tokens = []
 # Loops through the input_nospaces and seperates each token and places them into a list
 temp_token = ""
     
-for j in range(len(input_nospaces)):
-    i = input_nospaces[j]
+for j in range(len(input)):
+    i = input[j]
     if temp_token in keywords or temp_token in operators:
             tokens.append(temp_token)
             temp_token = ""
@@ -28,6 +28,9 @@ for j in range(len(input_nospaces)):
           temp_token = ""
         tokens.append(i)
     elif i == "\n":
+         tokens.append(temp_token)
+         temp_token = ""
+    elif i == " ":
          tokens.append(temp_token)
          temp_token = ""
     else:
@@ -40,13 +43,8 @@ for j in range(len(input_nospaces)):
 
 
 
-# Iterates through tokens list and removes any instances of blank tokens
-#print(tokens)
-for i in tokens:
-     if i == "" or i == " ":
-          j = tokens.index(i)
-          del tokens[j]
-
+# Removes spaces and empty tokens from list
+tokens = [i for i in tokens if i != "" and i != " "]
 
 # Deals with edge cases of "<" and ">" followed by "="
 index = 0
@@ -99,6 +97,7 @@ def isInteger(token):
      
 
 # FSM for Real
+
 def isReal(token):
      real_dictionary = {
      1 : [2, 3],

@@ -1,7 +1,7 @@
 Output:
 Token                 Lexeme
 ---------             --------
-Keyword               if
+Keyword               for
 Separator             (
 Identifier            x
 Operator              >
@@ -97,7 +97,8 @@ Keyword               Integer
 Real                  0.5
 Separator             ;
 Keyword               put
-Identifier            true
+Identifier            tru
+Identifier            e
 Separator             ;
 Keyword               if
 Separator             (

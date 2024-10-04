@@ -1,4 +1,4 @@
-if (x > 0.5) { put x; }
+for (x > 0.5) { put x; }
 for (i = 0; i < 10) { Integer x; }
 while (x >= 3.14) { Boolean flag; }
 Integer alpha9999alpha = 10; if (alpha > 5) { put alpha; }
