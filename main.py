@@ -1,9 +1,9 @@
 # Programmers: Salvador Delgado, Brandy Nguyen, Landon Patam, & Nicholas Reeves
 
 # Lists of Seperators, Operators and Keywords for later reference
-separators = ["(", ")", ";", "{", "}", "[", "]"]
+separators = ["(", ")", ";", "{", "}", "[", "]", ","]
 operators = ["+", "-", "*", "/", "=", "==", "<", ">", ">=", "<=", "and", "or", "not"]
-keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer", "boolean", "real", "put", "true", "True", "false", "False"]
+keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer", "boolean", "real", "put", "true", "True", "false", "False", "function", "return", "get", "else", "elif"]
 
 # Takes text from input file and converts into a string with no spaces
 with open("input.txt", "r" ) as file:
