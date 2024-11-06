@@ -3,7 +3,7 @@
 # Lists of Seperators, Operators and Keywords for later reference
 separators = ["(", ")", ";", "{", "}", "[", "]", ","]
 operators = ["+", "-", "*", "/", "=", "==", "!=", "<", ">", ">=", "<=", "and", "or", "not"]
-keywords = ["while", "if", "for", "fi", "Integer", "Boolean", "Real", "integer", "boolean", "real", "put", "function", "return", "get", "true", "false", "else", "elif", "main"]
+keywords = ["while", "if", "for", "fi", "integer", "boolean", "real", "put", "function", "return", "get", "true", "false", "else", "elif", "main"]
 
 # Takes text from input file and converts into a string with no spaces
 with open("input.txt", "r" ) as file:

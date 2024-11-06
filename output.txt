@@ -1,6 +1,11 @@
 Output:
 Token                 Lexeme
 ---------             --------
+Separator             [
+Operator              *
+Identifier            operator
+Operator              *
+Separator             ]
 Keyword               for
 Separator             (
 Identifier            y
@@ -27,6 +32,11 @@ Identifier            String
 Identifier            message
 Separator             ;
 Separator             }
+Separator             [
+Operator              *
+Identifier            identifier
+Operator              *
+Separator             ]
 Keyword               if
 Separator             (
 Identifier            flag
@@ -34,13 +44,13 @@ Operator              ==
 Keyword               false
 Separator             )
 Separator             {
-Keyword               Boolean
+Identifier            Boolean
 Identifier            isSet
 Operator              =
 Keyword               true
 Separator             ;
 Separator             }
-Keyword               Integer
+Identifier            Integer
 Unknown               var1
 Operator              =
 Integer               20
@@ -59,7 +69,7 @@ Separator             }
 Keyword               real
 Identifier            pi
 Separator             ;
-Keyword               Boolean
+Identifier            Boolean
 Identifier            check
 Separator             ;
 Keyword               if
