@@ -1,11 +1,6 @@
 Output:
 Token                 Lexeme
 ---------             --------
-Separator             [
-Operator              *
-Identifier            operator
-Operator              *
-Separator             ]
 Keyword               for
 Separator             (
 Identifier            y
@@ -32,11 +27,6 @@ Identifier            String
 Identifier            message
 Separator             ;
 Separator             }
-Separator             [
-Operator              *
-Identifier            identifier
-Operator              *
-Separator             ]
 Keyword               if
 Separator             (
 Identifier            flag

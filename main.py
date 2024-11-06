@@ -1,13 +1,18 @@
 # Programmers: Salvador Delgado, Brandy Nguyen, Landon Patam, & Nicholas Reeves
+import re 
 
 # Lists of Seperators, Operators and Keywords for later reference
-separators = ["(", ")", ";", "{", "}", "[", "]", ","]
+separators = ["(", ")", ";", "{", "}", "[", "]", ",", "@"]
 operators = ["+", "-", "*", "/", "=", "==", "!=", "<", ">", ">=", "<=", "and", "or", "not"]
 keywords = ["while", "if", "for", "fi", "integer", "boolean", "real", "put", "function", "return", "get", "true", "false", "else", "elif", "main"]
 
 # Takes text from input file and converts into a string with no spaces
 with open("input.txt", "r" ) as file:
      input = file.read()
+
+
+# Removes comments from the input string
+input = re.sub(r"\[\*.*?\*\]", "", input)
 
 # Instantiating list for Tokens
 tokens = []
